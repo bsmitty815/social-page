@@ -1,12 +1,12 @@
-import Home from './components/Home'
+import FirstComponent from './components/FirstComponent'
 import './App.css';
 import { Route, Switch } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <Route path="/Home">
-        <Home />
+      <Route>
+        <FirstComponent />
       </Route>
 
     </div>
