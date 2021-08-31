@@ -8,14 +8,14 @@ import Header from './components/Header'
 
 function App() {
   const [user, setUser] = useState(null)
-  console.log(user)
+  console.log(user, "user")
 
   //auto login
   useEffect(() => {
-    fetch("localhost.com/3000/me").then((r) => {
+    fetch("http://localhost:3000/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user))
-      }
+      } 
     })
   }, [])
 
@@ -28,7 +28,7 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/Profile">
-          <Profile />
+          <Profile user={user} onLogin={setUser} />
         </Route>
         <Route path="/">
           <Profile />
