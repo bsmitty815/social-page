@@ -30,9 +30,9 @@ function LoginForm({onLogin}) {
                 <input type="text" name="username" id="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <br></br>
                 <label htmlFor="password">Password: </label>
-                <input type="text" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 <br></br>
-                <p>{errors}</p>
+                <p key ={errors}>{errors}</p>
                 <button>Submit</button>
             </form>
         </div>

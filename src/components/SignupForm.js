@@ -23,11 +23,13 @@ function SignupForm({onLogin}) {
             }),
         }).then((r) => {
             if (r.ok) {
-                r.json().then((user) => console.log(user))
+                r.json().then((user) => onLogin(user))
             } else {
-                r.json().then((err) => console.log(err.errors))
+                r.json().then((err) => setErrors(err.errors))
             }
         })
+
+        
     }
     return (
         <div>
@@ -36,16 +38,19 @@ function SignupForm({onLogin}) {
                 <label htmlFor="username">Username: </label>
                 <input type="text" name="username" id="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <br></br>
-                <label htmlFor="Password">Password: </label>
-                <input type="text" name="Password" id="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <label htmlFor="password">Password: </label>
+                <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 <br></br>
-                <label htmlFor="Password Confirmation">Password Confirmation: </label>
-                <input type="text" name="password_confirmation" id="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
+                <label htmlFor="password confirmation">Password Confirmation: </label>
+                <input type="password" name="password_confirmation" id="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
                 <br></br>
                 <label htmlFor="image">Image: </label>
                 <input type="text" name="image" id="image" value={image} onChange={(e) => setImage(e.target.value)}/>
                 <br></br>
-                <p key={errors}>{errors}</p>
+                {errors.map((error) => {
+                    return <p key ={error}>{error}</p>
+                })}
+                
                 <button>Submit</button>
             </form>
    
