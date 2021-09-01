@@ -7,25 +7,31 @@ function SignupForm({onLogin}) {
     const [image, setImage] = useState("")
     const [errors, setErrors] = useState([])
     console.log(username, password, passwordConfirmation,image)
+    console.log(errors)
 
     function handleSubmit(event) {
         event.preventDefault()
-        fetch("http://localhost:3000/signup", {
+        fetch("/signup", {
             method: "POST",
             headers: {
+                "Accepts": "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
+            body: JSON.stringify({user: {
                 username,
                 password,
                 password_confirmation: passwordConfirmation,
                 image,
+            }
             }),
         }).then((r) => {
             if (r.ok) {
                 r.json().then((user) => onLogin(user))
+                setUsername("")
+                setPassword("")
+                setPasswordConfirmation("")
             } else {
-                r.json().then((err) => setErrors(err.errors))
+                r.json().then((err) => setErrors(err.exception))
             }
         })
 
@@ -36,20 +42,20 @@ function SignupForm({onLogin}) {
             <h1>Signup</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username: </label>
-                <input type="text" name="username" id="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                <input type="text" name="username" id="signup-username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <br></br>
                 <label htmlFor="password">Password: </label>
-                <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <input type="password" name="password" id="signup-password" autoComplete="on" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 <br></br>
                 <label htmlFor="password confirmation">Password Confirmation: </label>
-                <input type="password" name="password_confirmation" id="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
+                <input type="password" name="password_confirmation" id="password_confirmation" autoComplete="on" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
                 <br></br>
                 <label htmlFor="image">Image: </label>
                 <input type="text" name="image" id="image" value={image} onChange={(e) => setImage(e.target.value)}/>
                 <br></br>
-                {errors.map((error) => {
+                {errors.length > 0 ? errors.map((error) => {
                     return <p key ={error}>{error}</p>
-                })}
+                }) : null}
                 
                 <button>Submit</button>
             </form>

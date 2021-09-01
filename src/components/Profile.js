@@ -1,13 +1,13 @@
 
-function Profile({user, setUser}) {
+function Profile({user, onLogout}) {
 
 
     function handleLogout() {
-        fetch("http://localhost:3000/logout", {
+        fetch("/logout", {
             method: "DELETE"
         }).then((r) => {
             if (r.ok) {
-                setUser(null)
+                onLogout(null)
             }
         })
     }

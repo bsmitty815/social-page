@@ -6,15 +6,18 @@ function LoginForm({onLogin}) {
 
     function handleSubmit(event) {
         event.preventDefault()
-        fetch("http://localhost:3000/login", {
+        fetch("/login", {
             method: "POST",
             headers: {
+                "Accepts": "application/json",
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({username, password}),
         }).then((r) => {
             if (r.ok) {
                 r.json().then((user) => onLogin(user))
+                setUsername("")
+                setPassword("")
             } else {
                 r.json().then((err) => setErrors(err.error))
             }
@@ -22,6 +25,8 @@ function LoginForm({onLogin}) {
 
 
     }
+
+
     return (
         <div>
             <h1>Login</h1>
@@ -30,7 +35,7 @@ function LoginForm({onLogin}) {
                 <input type="text" name="username" id="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <br></br>
                 <label htmlFor="password">Password: </label>
-                <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <input type="password" name="password" autoComplete="on" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 <br></br>
                 <p key ={errors}>{errors}</p>
                 <button>Submit</button>

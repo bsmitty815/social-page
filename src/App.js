@@ -12,7 +12,7 @@ function App() {
 
   //auto login
   useEffect(() => {
-    fetch("http://localhost:3000/me").then((r) => {
+    fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user))
       } 
@@ -20,19 +20,23 @@ function App() {
   }, [])
 
 
-  
   if (!user) return <Login onLogin={setUser}/>
   
   return (
     <div>
       <Header />
       <Switch>
+        
+        
         <Route exact path="/Profile">
-          <Profile user={user} onLogin={setUser} />
+          <Profile user={user} onLogout={setUser} />
         </Route>
+        {/* 
         <Route path="/">
-          <Profile />
+          {!user ? <Login onLogin={setUser}/> : <Profile user={user} onLogout={setUser} />}
         </Route>
+        */}
+        
       </Switch>
     </div>
   );
