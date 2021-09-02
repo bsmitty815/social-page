@@ -12,13 +12,13 @@ function Login({onLogin}) {
     return (
         <div>
             <Header />
-            <Route>
+
                 <LoginForm onLogin={onLogin} />
-            </Route>
+
             
-            <Route>
+
                 <SignupForm onLogin={onLogin} />
-            </Route>
+
         </div>
     )
 }

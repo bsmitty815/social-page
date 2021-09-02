@@ -1,16 +1,19 @@
-import { useState } from "react"
+import { useState} from "react"
+import { useHistory } from "react-router-dom"
 
-
-function EditUser() {
+function EditUser({onDelete}) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errors, setErrors] = useState([])
+    let history = useHistory()
+    console.log(username, password, passwordConfirmation)
 
     //would you send through old password to confirm
-    function handleSubmit() {
-        fetch("/user/id", {
-            method: "Patch",
+    function handleSubmit(event) {
+        event.preventDefault()
+        fetch("/users/:id", {
+            method: "PATCH",
             headers: {
                 "Accepts": "application/json",
                 "Content-Type": "application/json",
@@ -18,18 +21,29 @@ function EditUser() {
             body: JSON.stringify({user: {
                 username,
                 password,
-                passwordConfirmation
-            }}).then((r) => {
-                if (r.ok) {
-                    //r.json().then((user) => onLogin(user))
-                    setUsername("")
-                    setPassword("")
-                    setPasswordConfirmation("")
-                } else {
-                    r.json().then((err) => setErrors(err.exception))
-                }
-            })
+                passwordConfirmation: passwordConfirmation,
+            }})
         })
+        .then((r) => {
+            if (r.ok) {
+                //r.json().then((user) => onLogin(user))
+                setUsername("")
+                setPassword("")
+                setPasswordConfirmation("")
+            } else {
+                r.json().then((err) => console.log(err))
+            }
+        })
+        
+    }
+
+    function handleDelete() {
+        fetch("/users/:id", {
+            method: "DELETE",
+        })
+        .then((r) => console.log(r))
+        onDelete(null)
+        history.push("/login")
     }
 
 
@@ -53,6 +67,8 @@ function EditUser() {
                 
                 <button>Submit</button>
             </form>
+            <br></br>
+            <button onClick={handleDelete}>Delete Account</button>
         </div>
     )
 }
