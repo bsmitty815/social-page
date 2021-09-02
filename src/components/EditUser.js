@@ -2,12 +2,12 @@ import { useState} from "react"
 import { useHistory } from "react-router-dom"
 
 function EditUser({onDelete}) {
-    const [username, setUsername] = useState("")
+    const [oldPassword, setOldPassword] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errors, setErrors] = useState([])
     let history = useHistory()
-    console.log(username, password, passwordConfirmation)
+    console.log(oldPassword, password, passwordConfirmation)
 
     //would you send through old password to confirm
     function handleSubmit(event) {
@@ -19,7 +19,7 @@ function EditUser({onDelete}) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({user: {
-                username,
+                oldPassword,
                 password,
                 passwordConfirmation: passwordConfirmation,
             }})
@@ -27,7 +27,7 @@ function EditUser({onDelete}) {
         .then((r) => {
             if (r.ok) {
                 //r.json().then((user) => onLogin(user))
-                setUsername("")
+                setOldPassword("")
                 setPassword("")
                 setPasswordConfirmation("")
             } else {
@@ -52,8 +52,8 @@ function EditUser({onDelete}) {
             
             <h1>edit user page</h1>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username: </label>
-                <input type="text" name="username" id="edit-username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                <label htmlFor="old-password">Old Password: </label>
+                <input type="password" name="old-password" id="old-password" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)}/>
                 <br></br>
                 <label htmlFor="password">Password: </label>
                 <input type="password" name="password" id="edit-password" autoComplete="on" value={password} onChange={(e) => setPassword(e.target.value)}/>
