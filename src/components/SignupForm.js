@@ -4,9 +4,8 @@ function SignupForm({onLogin}) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
-    const [image, setImage] = useState("")
     const [errors, setErrors] = useState([])
-    console.log(username, password, passwordConfirmation,image)
+    console.log(username, password, passwordConfirmation)
     console.log(errors)
 
     function handleSubmit(event) {
@@ -20,8 +19,7 @@ function SignupForm({onLogin}) {
             body: JSON.stringify({user: {
                 username,
                 password,
-                password_confirmation: passwordConfirmation,
-                image,
+                password_confirmation: passwordConfirmation
             }
             }),
         }).then((r) => {
@@ -49,9 +47,6 @@ function SignupForm({onLogin}) {
                 <br></br>
                 <label htmlFor="password confirmation">Password Confirmation: </label>
                 <input type="password" name="password_confirmation" id="password_confirmation" autoComplete="on" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
-                <br></br>
-                <label htmlFor="image">Image: </label>
-                <input type="text" name="image" id="image" value={image} onChange={(e) => setImage(e.target.value)}/>
                 <br></br>
                 {errors.length > 0 ? errors.map((error) => {
                     return <p key ={error}>{error}</p>

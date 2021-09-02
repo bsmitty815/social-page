@@ -27,15 +27,15 @@ function App() {
       <Header />
       <Switch>
         
-        
+        {/*
         <Route exact path="/Profile">
           <Profile user={user} onLogout={setUser} />
         </Route>
-        {/* 
+         */}
         <Route path="/">
           {!user ? <Login onLogin={setUser}/> : <Profile user={user} onLogout={setUser} />}
         </Route>
-        */}
+        
         
       </Switch>
     </div>
