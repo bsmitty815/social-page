@@ -1,3 +1,4 @@
+import EditUser from "./EditUser"
 
 function Profile({user, onLogout}) {
 
@@ -12,9 +13,14 @@ function Profile({user, onLogout}) {
         })
     }
 
+    function handleEditUser() {
+
+    }
+
     return (
         <div>
             <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleEditUser}>Edit User</button>
             test profile
         </div>
     )
