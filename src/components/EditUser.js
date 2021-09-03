@@ -30,7 +30,7 @@ function EditUser({onDelete}) {
                 setOldPassword("")
                 setPassword("")
                 setPasswordConfirmation("")
-                history.push("/profile")
+                //history.push("/profile")
             } else {
                 r.json().then((err) => console.log(err))
             }

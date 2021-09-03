@@ -1,7 +1,7 @@
 
 import './App.css';
 import { Route, Switch, Redirect} from "react-router-dom";
-import Login from "./components/Login"
+import Login from "./components/auth/Login"
 import { useState, useEffect } from "react"
 import Profile from "./components/Profile"
 import Header from './components/Header'
@@ -16,6 +16,12 @@ function App() {
   //loading 
   //auto login
   useEffect(() => {
+    if (user) {
+      setLoading(false)
+    }
+  }, [user])
+
+  useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user))
@@ -24,11 +30,7 @@ function App() {
     })
   }, [])
 
-  useEffect(() => {
-    if (user) {
-      setLoading(false)
-    }
-  }, [user])
+
   
 
   //if (!user) return <Login onLogin={setUser}/>
@@ -36,6 +38,7 @@ function App() {
   return (
     <div>
       <Header />
+       
       <Switch>
         
         {/*
@@ -44,6 +47,8 @@ function App() {
         </Route>
          */}
 
+        
+        
         <Route exact path="/">
           {!loading ? <Profile user={user} onLogout={setUser} /> : <Loading />}
         </Route>
@@ -54,7 +59,15 @@ function App() {
         <Route exact path="/profile/edit">
           <EditUser onDelete={setUser} />
         </Route>
+         
+        
+        
+        <Route exact path="/profile">
+          {!loading ? <Profile user={user} onLogout={setUser} /> : <Loading />}
+        </Route>
       </Switch>
+        
+      
     </div>
   );
 }

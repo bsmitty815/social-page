@@ -1,6 +1,7 @@
 
 import { Link, useHistory, useRouteMatch } from "react-router-dom"
 function Profile({user, onLogout}) {
+    console.log("profile", user)
     let history = useHistory();
     let match = useRouteMatch();
 
@@ -15,11 +16,6 @@ function Profile({user, onLogout}) {
         })
     }
 
-    function handleEditUser() {
-       // history.push('/EditUser')
-    }
-    // <button onClick={() => history.push('/EditUser')}>Click button to EditUser</button>
-
 
     return (
         <div>
@@ -28,7 +24,7 @@ function Profile({user, onLogout}) {
 
             <Link to="/profile/edit">Edit User</Link>
             
-            <button type="button" onClick={handleEditUser}>Edit User</button>
+            
             
             test profile
 
