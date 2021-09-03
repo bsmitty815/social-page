@@ -1,38 +1,46 @@
-import { useState} from "react"
-import { useHistory } from "react-router-dom"
+import { useState } from "react"
+import { useHistory, Link } from "react-router-dom"
 
 function EditUser({onDelete}) {
     const [oldPassword, setOldPassword] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errors, setErrors] = useState([])
+    const [message, setMessage] = useState([])
     let history = useHistory()
+    console.log(errors, "errors")
+    console.log(message, "message")
     console.log(oldPassword, password, passwordConfirmation)
 
     //would you send through old password to confirm
     function handleSubmit(event) {
+
         event.preventDefault()
+        setErrors([])
+        setMessage([])
         fetch("/users/:id", {
             method: "PATCH",
             headers: {
                 "Accepts": "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({user: {
-                oldPassword,
-                password,
-                passwordConfirmation: passwordConfirmation,
+            body: JSON.stringify({
+                oldPass: {
+                    oldPassword,
+                },
+                user: {
+                    password,
+                    password_confirmation: passwordConfirmation,
             }})
         })
         .then((r) => {
             if (r.ok) {
-                //r.json().then((user) => onLogin(user))
                 setOldPassword("")
                 setPassword("")
                 setPasswordConfirmation("")
-                //history.push("/profile")
+                r.json().then((data) => setMessage(data.message))
             } else {
-                r.json().then((err) => console.log(err))
+                r.json().then((err) => setErrors(err.message))
             }
         })
         
@@ -52,6 +60,11 @@ function EditUser({onDelete}) {
         <div>
             
             <h1>edit user page</h1>
+            <Link to="/profile">
+                <button>
+                back
+                </button>
+            </Link>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="old-password">Old Password: </label>
                 <input type="password" name="old-password" id="old-password" autoComplete="on" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)}/>
@@ -62,10 +75,9 @@ function EditUser({onDelete}) {
                 <label htmlFor="password confirmation">Password Confirmation: </label>
                 <input type="password" name="password_confirmation" id="edit_password_confirmation" autoComplete="on" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
                 <br></br>
-                {errors.length > 0 ? errors.map((error) => {
-                    return <p key ={error}>{error}</p>
-                }) : null}
-                
+                {errors}
+                {message}
+                <br></br>
                 <button>Submit</button>
             </form>
             <br></br>

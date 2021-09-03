@@ -22,7 +22,11 @@ function Profile({user, onLogout}) {
             
             <button onClick={handleLogout}>Logout</button>
 
-            <Link to="/profile/edit">Edit User</Link>
+            <Link to="/profile/edit">
+                <button>
+                Edit User
+                </button>
+            </Link>
             
             
             
