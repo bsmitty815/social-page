@@ -5,31 +5,38 @@ import Login from "./components/auth/Login"
 import { useState, useEffect } from "react"
 import Profile from "./components/Profile"
 import Header from './components/Header'
-import EditUser from './components/EditUser'
+import EditPassword from './components/profile/EditPassword'
+import EditProfile from './components/profile/EditProfile'
 import Loading from './components/loading/Loading'
+import GoodBye from './components/auth/GoodBye'
 
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-  console.log(user, "user")
-  console.log(loading, "loading")
-  //loading 
-  //auto login
-  useEffect(() => {
-    if (user) {
-      setLoading(false)
-    }
-  }, [user])
+  console.log("loading",loading)
+  console.log(user)
 
+  //auto login
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user))
-        
-      } 
+        setLoading(false)
+      } else {
+        setLoading(false)
+      }
+
     })
   }, [])
 
+  //loading 
+  // useEffect(() => {
+  //   console.log("loading",loading)
+  //   if (user) {
+  //     setLoading(false)
+      
+  //   }
+  // }, [user])
 
   
 
@@ -41,30 +48,27 @@ function App() {
        
       <Switch>
         
-        {/*
-        <Route exact path="/Profile">
-          <Profile user={user} onLogout={setUser} />
-        </Route>
-         */}
-
-        
-        
-        <Route exact path="/">
-          {!loading ? <Profile user={user} onLogout={setUser} /> : <Loading />}
-        </Route>
         <Route exact path="/login">
           {user ? <Redirect to="/" /> : <Login onLogin={setUser}/>}
         </Route>
-
-        <Route exact path="/profile/edit">
-          <EditUser onDelete={setUser} />
-        </Route>
-         
-        
-        
         <Route exact path="/profile">
-          {!loading ? <Profile user={user} onLogout={setUser} /> : <Loading />}
+          {!loading ? <Profile user={user}/> : <Loading />}
         </Route>
+
+        <Route exact path="/profile/edit_password">
+          {user ? <EditPassword onDelete={setUser} /> : <Redirect to="/" />}
+        </Route>
+        <Route exact path="/profile/edit_profile">
+          {user ? <EditProfile onDelete={setUser} /> : <Redirect to="/" />}
+        </Route>
+        <Route exact path="/goodbye">
+          <GoodBye  onLogout={setUser} setLoading={setLoading}  />
+        </Route>
+        <Route path="/">
+          {!loading ? <Profile user={user} /> : <Loading />}
+        </Route>
+
+
       </Switch>
         
       

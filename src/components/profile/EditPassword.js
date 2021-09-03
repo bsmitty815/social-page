@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useHistory, Link } from "react-router-dom"
 
-function EditUser({onDelete}) {
+function EditPassword({onDelete}) {
     const [oldPassword, setOldPassword] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
@@ -86,4 +86,4 @@ function EditUser({onDelete}) {
     )
 }
 
-export default EditUser
+export default EditPassword

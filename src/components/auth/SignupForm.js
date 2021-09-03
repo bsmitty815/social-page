@@ -48,9 +48,9 @@ function SignupForm({onLogin}) {
                 <label htmlFor="password confirmation">Password Confirmation: </label>
                 <input type="password" name="password_confirmation" id="password_confirmation" autoComplete="on" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
                 <br></br>
-                {errors.length > 0 ? errors.map((error) => {
+                {errors.map((error) => {
                     return <p key ={error}>{error}</p>
-                }) : null}
+                })}
                 
                 <button>Submit</button>
             </form>

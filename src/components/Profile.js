@@ -1,36 +1,51 @@
 
-import { Link, useHistory, useRouteMatch } from "react-router-dom"
-function Profile({user, onLogout}) {
-    console.log("profile", user)
+
+import { Link, useHistory, Redirect } from "react-router-dom"
+
+function Profile({user}) {
+
     let history = useHistory();
-    let match = useRouteMatch();
+
 
     function handleLogout() {
         fetch("/logout", {
             method: "DELETE"
         }).then((r) => {
             if (r.ok) {
-                onLogout(null)
-                history.push("/login")
+                history.push("/goodbye")
             }
         })
     }
 
+   
+    if (!user) return <Redirect to="/login" />
 
     return (
         <div>
-            
+            <div>
             <button onClick={handleLogout}>Logout</button>
 
-            <Link to="/profile/edit">
+            <Link to="/profile/edit_password">
                 <button>
-                Edit User
+                Edit Password
                 </button>
             </Link>
+            <Link to="/profile/edit_profile">
+                <button>
+                Edit Profile
+                </button>
+            </Link>
+            </div>
+            <div>
+                <h1>Username: {user.username}</h1>
+                <p>Image: {user.profile.image}</p>
+                <p>Bio: {user.profile.bio}</p>
+                <p>Status: {user.profile.status}</p>
+            </div>
+
             
             
             
-            test profile
 
             
         </div>
