@@ -29,7 +29,7 @@ function SignupForm({onLogin}) {
                 setPassword("")
                 setPasswordConfirmation("")
             } else {
-                r.json().then((err) => setErrors(err.exception))
+                r.json().then((err) => console.log(err.exception))
             }
         })
 

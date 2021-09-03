@@ -30,6 +30,7 @@ function EditUser({onDelete}) {
                 setOldPassword("")
                 setPassword("")
                 setPasswordConfirmation("")
+                history.push("/profile")
             } else {
                 r.json().then((err) => console.log(err))
             }
@@ -53,7 +54,7 @@ function EditUser({onDelete}) {
             <h1>edit user page</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="old-password">Old Password: </label>
-                <input type="password" name="old-password" id="old-password" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)}/>
+                <input type="password" name="old-password" id="old-password" autoComplete="on" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)}/>
                 <br></br>
                 <label htmlFor="password">Password: </label>
                 <input type="password" name="password" id="edit-password" autoComplete="on" value={password} onChange={(e) => setPassword(e.target.value)}/>

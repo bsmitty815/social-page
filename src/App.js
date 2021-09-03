@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import Profile from "./components/Profile"
 import Header from './components/Header'
 import EditUser from './components/EditUser'
+import Loading from './components/loading/Loading'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -44,7 +45,7 @@ function App() {
          */}
 
         <Route exact path="/">
-          {!loading ? <Profile user={user} onLogout={setUser} /> : "loading"}
+          {!loading ? <Profile user={user} onLogout={setUser} /> : <Loading />}
         </Route>
         <Route exact path="/login">
           {user ? <Redirect to="/" /> : <Login onLogin={setUser}/>}
