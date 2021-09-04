@@ -38,14 +38,15 @@ function App() {
   //   }
   // }, [user])
 
+  function updateUserProfileState() {
+
+  }
   
 
-  //if (!user) return <Login onLogin={setUser}/>
   
   return (
     <div>
-      <Header />
-       
+      <Header />   
       <Switch>
         
         <Route exact path="/login">
@@ -59,7 +60,7 @@ function App() {
           {user ? <EditPassword onDelete={setUser} /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/profile/edit_profile">
-          {user ? <EditProfile onDelete={setUser} /> : <Redirect to="/" />}
+          {user ? <EditProfile onDelete={setUser} user={user} updateUserProfileState={updateUserProfileState} /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/goodbye">
           <GoodBye  onLogout={setUser} setLoading={setLoading}  />
