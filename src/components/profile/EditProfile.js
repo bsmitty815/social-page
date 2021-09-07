@@ -6,6 +6,7 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
     const [image, setImage] = useState(user.profile.image)
     const [bio, setBio] = useState(user.profile.bio)
     const [status, setStatus] = useState(user.profile.status)
+    const [profileUpdatedTextConfirmation, setProfileUpdatedTextConfirmation] = useState("")
     let history = useHistory()
     console.log(image)
     console.log(bio)
@@ -46,6 +47,7 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((data) => updateUserProfileState(data))
+                setProfileUpdatedTextConfirmation("Profile Updated")
             } else {
                 r.json().then((err) => console.log(err.exception))
             }
@@ -55,7 +57,6 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
 
     return (
         <div>
-            <h1>edit user profile</h1>
             <Link to="/profile">
                 <button  className="myButton" >
                 back
@@ -63,33 +64,25 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
             </Link>
             <p>Username: {user.username}</p>
             <form onSubmit={handleSubmit}>
-                {/* <label htmlFor="old-password">Old Password: </label>
-                <input type="password" name="old-password" id="old-password" autoComplete="on" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)}/>
-                <br></br>
-                <label htmlFor="password">Password: </label>
-                <input type="password" name="password" id="edit-password" autoComplete="on" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                <br></br>
-                <label htmlFor="password confirmation">Password Confirmation: </label>
-                <input type="password" name="password_confirmation" id="edit_password_confirmation" autoComplete="on" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
-                <br></br>
-                {errors}
-                {message}
-                <br></br> */}
-                <div class="">
+                <div className="">
                     <h1 access="false">Edit Profile</h1>
                 </div>
                 <div>
-                    <label htmlFor="edit-image-url">Image Url</label>
-                    <input type="text" class="form-control" name="image" access="false" id="edit-image-url" placeholder={image} value={image} onChange={(e) => setImage(e.target.value)}/>
+                    <label htmlFor="edit-image-url">Image Url:</label>
+                    <br></br>
+                    <input type="text" className="form-control" name="image" access="false" id="edit-image-url" placeholder={image} value={image} onChange={(e) => setImage(e.target.value)}/>
                 </div>
                 <div>
-                    <label htmlFor="edit-bio">Bio</label>
-                    <textarea type="textarea" class="form-control" name="bio" access="false" maxLength="500" rows="10" id="edit-bio" placeholder={bio} value={bio} onChange={(e) => setBio(e.target.value)}></textarea>
+                    <label htmlFor="edit-bio">Bio:</label>
+                    <br></br>
+                    <textarea type="textarea" className="form-control" name="bio" access="false" maxLength="500" rows="10" id="edit-bio" placeholder={bio} value={bio} onChange={(e) => setBio(e.target.value)}></textarea>
                 </div>
                 <div>
-                    <label htmlFor="edit-status">Status</label>
-                    <textarea type="textarea" class="form-control" name="status" access="false" maxLength="100" rows="5" id="edit-status" placeholder={status} value={status} onChange={(e) => setStatus(e.target.value)}></textarea>
+                    <label htmlFor="edit-status">Status:</label>
+                    <br></br>
+                    <textarea type="textarea" className="form-control" name="status" access="false" maxLength="100" rows="5" id="edit-status" placeholder={status} value={status} onChange={(e) => setStatus(e.target.value)}></textarea>
                 </div>
+                <p>{profileUpdatedTextConfirmation}</p>
                 <button className="myButton" >Submit</button>
             </form>
             <br></br>

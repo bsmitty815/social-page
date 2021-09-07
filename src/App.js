@@ -36,8 +36,8 @@ function App() {
     }
   }, [user])
 
-  function updateUserProfileState() {
-
+  function updateUserProfileState(updatedProfileData) {
+    setUser(updatedProfileData)
   }
   
 
