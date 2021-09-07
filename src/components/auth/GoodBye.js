@@ -2,12 +2,11 @@ import { Link } from "react-router-dom"
 
 
 
-function GoodBye({onLogout, setLoading}) {
+function GoodBye() {
 
-    onLogout(null)
-    setLoading(true)
+
     return (
-        <div>
+        <div className="Goodbye-Container">
             <strong>Have a good day!</strong>
             <p>
             <Link to="/login">

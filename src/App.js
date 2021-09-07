@@ -43,7 +43,7 @@ function App() {
 
   
   return (
-    <div>
+    <div className="App-Container">
       <Header />   
       <Switch>
         
@@ -51,7 +51,7 @@ function App() {
           {user ? <Redirect to="/" /> : <Login onLogin={setUser}/>}
         </Route>
         <Route exact path="/profile">
-          {!loading ? <Profile user={user}/> : <Loading />}
+          {!loading ? <Profile user={user} onLogout={setUser} setLoading={setLoading} /> : <Loading />}
         </Route>
 
         <Route exact path="/profile/edit_password">
@@ -61,10 +61,10 @@ function App() {
           {user ? <EditProfile onDelete={setUser} user={user} updateUserProfileState={updateUserProfileState} /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/goodbye">
-          <GoodBye  onLogout={setUser} setLoading={setLoading}  />
+          <GoodBye />
         </Route>
         <Route path="/">
-          {!loading ? <Profile user={user} /> : <Loading />}
+          {!loading ? <Profile user={user} onLogout={setUser} setLoading={setLoading}  /> : <Loading />}
         </Route>
 
 

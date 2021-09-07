@@ -2,7 +2,7 @@
 
 import { Link, useHistory, Redirect } from "react-router-dom"
 
-function Profile({user}) {
+function Profile({user, onLogout, setLoading}) {
     
     let history = useHistory();
 
@@ -12,6 +12,8 @@ function Profile({user}) {
             method: "DELETE"
         }).then((r) => {
             if (r.ok) {
+                onLogout(null)
+                setLoading(true)
                 history.push("/goodbye")
             }
         })
@@ -35,7 +37,7 @@ function Profile({user}) {
 
 
     return (
-        <div className="App-Container">
+        <div>
             <div>
             <button className="myButton"  onClick={handleLogout}>Logout</button>
 
@@ -52,7 +54,7 @@ function Profile({user}) {
             </div>
             <div>
                 <h1>Username: {user.username}</h1>
-                <p>Image: </p><img src={user.profile.image} />
+                <p>Image: </p><img src={user.profile.image} className="profile-image" alt={user.profile.image} />
                 <p>Bio: </p>
                 <p className="field-container">{bioDisplay}</p>
                 <p>Status: </p>

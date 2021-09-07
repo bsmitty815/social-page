@@ -8,17 +8,7 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
     const [status, setStatus] = useState(user.profile.status)
     const [profileUpdatedTextConfirmation, setProfileUpdatedTextConfirmation] = useState("")
     let history = useHistory()
-    console.log(image)
-    console.log(bio)
-    console.log(status)
-
-    //state all fields
-    //fetch patch profile
-    //update state is app component
-    //back button
-    //setUser on delete
-    //if i send back the user fromt he backend i may not have to update the user in a function and can just add the user to state
-
+    
     function handleDelete() {
         fetch("/users/:id", {
             method: "DELETE",

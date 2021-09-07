@@ -8,9 +8,7 @@ function EditPassword({onDelete}) {
     const [errors, setErrors] = useState([])
     const [message, setMessage] = useState([])
     let history = useHistory()
-    console.log(errors, "errors")
-    console.log(message, "message")
-    console.log(oldPassword, password, passwordConfirmation)
+
 
     //would you send through old password to confirm
     function handleSubmit(event) {
@@ -59,7 +57,7 @@ function EditPassword({onDelete}) {
     return (
         <div>
             
-            <h1>edit user page</h1>
+            <h1>Edit Password</h1>
             <Link to="/profile">
                 <button className="myButton" >
                 back
