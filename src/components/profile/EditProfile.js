@@ -1,11 +1,15 @@
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 function EditProfile({user, onDelete, updateUserProfileState}) {
     const [image, setImage] = useState(user.profile.image)
-    const [big, setBio] = useState(user.profile.bio)
+    const [bio, setBio] = useState(user.profile.bio)
     const [status, setStatus] = useState(user.profile.status)
+    let history = useHistory()
+    console.log(image)
+    console.log(bio)
+    console.log(status)
 
     //state all fields
     //fetch patch profile
@@ -20,16 +24,40 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
         })
         .then((r) => console.log(r))
         onDelete(null)
-        history.push("/login")
+        history.push("/goodbye")
     }
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        fetch("/profiles/:id", {
+            method: "PATCH",
+            headers: {
+                "Accepts": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                profile: {
+                    image,
+                    bio,
+                    status,
+                }
+            })
+        })
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((data) => updateUserProfileState(data))
+            } else {
+                r.json().then((err) => console.log(err.exception))
+            }
+        })
+    }
     
 
     return (
         <div>
             <h1>edit user profile</h1>
             <Link to="/profile">
-                <button>
+                <button  className="myButton" >
                 back
                 </button>
             </Link>
@@ -47,10 +75,25 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
                 {errors}
                 {message}
                 <br></br> */}
-                <button>Submit</button>
+                <div class="">
+                    <h1 access="false">Edit Profile</h1>
+                </div>
+                <div>
+                    <label htmlFor="edit-image-url">Image Url</label>
+                    <input type="text" class="form-control" name="image" access="false" id="edit-image-url" placeholder={image} value={image} onChange={(e) => setImage(e.target.value)}/>
+                </div>
+                <div>
+                    <label htmlFor="edit-bio">Bio</label>
+                    <textarea type="textarea" class="form-control" name="bio" access="false" maxLength="500" rows="10" id="edit-bio" placeholder={bio} value={bio} onChange={(e) => setBio(e.target.value)}></textarea>
+                </div>
+                <div>
+                    <label htmlFor="edit-status">Status</label>
+                    <textarea type="textarea" class="form-control" name="status" access="false" maxLength="100" rows="5" id="edit-status" placeholder={status} value={status} onChange={(e) => setStatus(e.target.value)}></textarea>
+                </div>
+                <button className="myButton" >Submit</button>
             </form>
             <br></br>
-            <button onClick={handleDelete}>Delete Account</button>
+            <button className="myButton"  onClick={handleDelete}>Delete Account</button>
         </div>
     )
 }

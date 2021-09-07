@@ -40,7 +40,7 @@ function LoginForm({onLogin}) {
                 <input type="password" name="password" autoComplete="on" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 <br></br>
                 <p key ={errors}>{errors}</p>
-                <button>Submit</button>
+                <button className="myButton" >Submit</button>
             </form>
         </div>
     )

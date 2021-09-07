@@ -29,7 +29,7 @@ function SignupForm({onLogin}) {
                 setPassword("")
                 setPasswordConfirmation("")
             } else {
-                r.json().then((err) => console.log(err.exception))
+                r.json().then((err) => setErrors(err.exception))
             }
         })
 
@@ -52,7 +52,7 @@ function SignupForm({onLogin}) {
                     return <p key ={error}>{error}</p>
                 })}
                 
-                <button>Submit</button>
+                <button  className="myButton" >Submit</button>
             </form>
    
 

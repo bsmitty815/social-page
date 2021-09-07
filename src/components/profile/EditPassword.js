@@ -61,7 +61,7 @@ function EditPassword({onDelete}) {
             
             <h1>edit user page</h1>
             <Link to="/profile">
-                <button>
+                <button className="myButton" >
                 back
                 </button>
             </Link>
@@ -78,10 +78,10 @@ function EditPassword({onDelete}) {
                 {errors}
                 {message}
                 <br></br>
-                <button>Submit</button>
+                <button className="myButton" >Submit</button>
             </form>
             <br></br>
-            <button onClick={handleDelete}>Delete Account</button>
+            <button  className="myButton" onClick={handleDelete}>Delete Account</button>
         </div>
     )
 }

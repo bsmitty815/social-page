@@ -13,11 +13,11 @@ import GoodBye from './components/auth/GoodBye'
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-  console.log("loading",loading)
-  console.log(user)
+
 
   //auto login
   useEffect(() => {
+    
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user))
@@ -30,13 +30,11 @@ function App() {
   }, [])
 
   //loading 
-  // useEffect(() => {
-  //   console.log("loading",loading)
-  //   if (user) {
-  //     setLoading(false)
-      
-  //   }
-  // }, [user])
+  useEffect(() => {
+    if (user) {
+      setLoading(false) 
+    }
+  }, [user])
 
   function updateUserProfileState() {
 

@@ -23,15 +23,15 @@ function Profile({user}) {
     return (
         <div>
             <div>
-            <button onClick={handleLogout}>Logout</button>
+            <button className="myButton"  onClick={handleLogout}>Logout</button>
 
             <Link to="/profile/edit_password">
-                <button>
+                <button  className="myButton" >
                 Edit Password
                 </button>
             </Link>
             <Link to="/profile/edit_profile">
-                <button>
+                <button  className="myButton" >
                 Edit Profile
                 </button>
             </Link>

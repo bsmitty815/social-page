@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom"
-import { useEffect } from "react"
+
 
 
 function GoodBye({onLogout, setLoading}) {
 
-    useEffect(() => {
-        onLogout(null)
-        setLoading(true)
-    }, [])
-
+    onLogout(null)
+    setLoading(true)
     return (
         <div>
             <strong>Have a good day!</strong>
