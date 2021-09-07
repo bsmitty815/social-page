@@ -35,7 +35,7 @@ function Profile({user}) {
 
 
     return (
-        <div>
+        <div className="App-Container">
             <div>
             <button className="myButton"  onClick={handleLogout}>Logout</button>
 
@@ -53,8 +53,11 @@ function Profile({user}) {
             <div>
                 <h1>Username: {user.username}</h1>
                 <p>Image: </p><img src={user.profile.image} />
-                <p>Bio: </p>{bioDisplay}
-                <p>Status: </p>"{user.profile.status}" -{user.username}
+                <p>Bio: </p>
+                <p className="field-container">{bioDisplay}</p>
+                <p>Status: </p>
+                <p className="field-container">"{user.profile.status}" -{user.username}</p>
+                
             </div>
 
             

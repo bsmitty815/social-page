@@ -1,17 +1,23 @@
-.App {
-  text-align: center;
+.App-Container {
+  text-align: left;
+  max-width: 400px;
+  margin: auto;
 }
 
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App-Header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(255, 196, 0);
+}
+
+/* field contiainer for bio, status*/
+.field-container {
+	background:linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
+	background-color:#ffc477;
+  border-radius:6px;
 }
 
 /* button css */

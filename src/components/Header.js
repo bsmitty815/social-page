@@ -2,7 +2,7 @@
 function Header() {
 
     return (
-        <div>
+        <div className="App-Header">
             <h1>
                 iSocial Page
             </h1>
