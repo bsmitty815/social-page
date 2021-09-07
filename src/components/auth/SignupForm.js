@@ -5,8 +5,7 @@ function SignupForm({onLogin}) {
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errors, setErrors] = useState([])
-    console.log(username, password, passwordConfirmation)
-    console.log(errors)
+
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -29,12 +28,16 @@ function SignupForm({onLogin}) {
                 setPassword("")
                 setPasswordConfirmation("")
             } else {
-                r.json().then((err) => setErrors(err.exception))
+                r.json().then((err) => setErrors(Object.values(err.exception)))
             }
         })
-
-        
     }
+
+    //displaying the errors on the page
+    const errorsString = errors.join("").split(":").slice(-1)
+    const errorsContainer = errorsString[0].replace(">", "")
+    
+
     return (
         <div>
             <h1>Signup</h1>
@@ -48,9 +51,9 @@ function SignupForm({onLogin}) {
                 <label htmlFor="password confirmation">Password Confirmation: </label>
                 <input type="password" name="password_confirmation" id="password_confirmation" autoComplete="on" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
                 <br></br>
-                {errors.map((error) => {
-                    return <p key ={error}>{error}</p>
-                })}
+
+                <p>{errorsContainer}</p>
+
                 
                 <button  className="myButton" >Submit</button>
             </form>
