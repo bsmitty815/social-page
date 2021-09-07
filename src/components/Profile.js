@@ -3,7 +3,7 @@
 import { Link, useHistory, Redirect } from "react-router-dom"
 
 function Profile({user}) {
-
+    
     let history = useHistory();
 
 
@@ -17,8 +17,22 @@ function Profile({user}) {
         })
     }
 
+    //   \n
+    
+   
+
    
     if (!user) return <Redirect to="/login" />
+
+
+    
+    //logic for bio to be seperate by line
+    let userBio = Object.values(user.profile.bio)
+    let newBio = userBio.join("").split("\n")
+    const bioDisplay = newBio.map((bioStrings) => { 
+        return <p>{bioStrings}</p>
+    })
+
 
     return (
         <div>
@@ -38,9 +52,9 @@ function Profile({user}) {
             </div>
             <div>
                 <h1>Username: {user.username}</h1>
-                <p>Image: {user.profile.image}</p>
-                <p>Bio: {user.profile.bio}</p>
-                <p>Status: {user.profile.status}</p>
+                <p>Image: </p><img src={user.profile.image} />
+                <p>Bio: </p>{bioDisplay}
+                <p>Status: </p>"{user.profile.status}" -{user.username}
             </div>
 
             
