@@ -13,7 +13,7 @@ import GoodBye from './components/auth/GoodBye'
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-  console.log("user", user)
+
 
   //auto login
   useEffect(() => {

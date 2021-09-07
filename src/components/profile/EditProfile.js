@@ -67,11 +67,15 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
                     <label htmlFor="edit-bio">Bio:</label>
                     <br></br>
                     <textarea type="textarea" className="form-control" name="bio" access="false" maxLength="500" rows="10" id="edit-bio" placeholder={bio} value={bio} onChange={(e) => setBio(e.target.value)}></textarea>
+                    <br></br>
+                    Maximum characters 1000
                 </div>
                 <div>
                     <label htmlFor="edit-status">Status:</label>
                     <br></br>
                     <textarea type="textarea" className="form-control" name="status" access="false" maxLength="100" rows="5" id="edit-status" placeholder={status} value={status} onChange={(e) => setStatus(e.target.value)}></textarea>
+                    <br></br>
+                    Maximum characters 100
                 </div>
                 <p>{profileUpdatedTextConfirmation}</p>
                 <button className="myButton" >Submit</button>
