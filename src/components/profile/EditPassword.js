@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useHistory, Link } from "react-router-dom"
 
-function EditPassword({onDelete}) {
+function EditPassword() {
     const [oldPassword, setOldPassword] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
@@ -44,14 +44,6 @@ function EditPassword({onDelete}) {
         
     }
 
-    function handleDelete() {
-        fetch("/users/:id", {
-            method: "DELETE",
-        })
-        .then((r) => console.log(r))
-        onDelete(null)
-        history.push("/login")
-    }
 
 
     return (
@@ -79,7 +71,6 @@ function EditPassword({onDelete}) {
                 <button className="myButton" >Submit</button>
             </form>
             <br></br>
-            <button  className="myButton" onClick={handleDelete}>Delete Account</button>
         </div>
     )
 }

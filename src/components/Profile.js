@@ -27,12 +27,12 @@ function Profile({user, onLogout, setLoading}) {
     if (!user) return <Redirect to="/login" />
 
 
-    
+    //console.log(Object.values(user.profile.bio))
     //logic for bio to be seperate by line
     let userBio = Object.values(user.profile.bio)
     let newBio = userBio.join("").split("\n")
-    const bioDisplay = newBio.map((bioStrings) => { 
-        return <p>{bioStrings}</p>
+    const bioDisplay = newBio.map((bioStrings, index) => { 
+        return <p key={index}>{bioStrings}</p>
     })
 
 
@@ -52,20 +52,22 @@ function Profile({user, onLogout, setLoading}) {
                 </button>
             </Link>
             </div>
+
+            <h1 >Username: {user.username}</h1>
+
+            Image:
             <div>
-                <h1>Username: {user.username}</h1>
-                <p>Image: </p><img src={user.profile.image} className="profile-image" alt={user.profile.image} />
-                <p>Bio: </p>
-                <p className="field-container">{bioDisplay}</p>
-                <p>Status: </p>
-                <p className="field-container">"{user.profile.status}" -{user.username}</p>
-                
+            <img src={user.profile.image} className="profile-image" alt={user.profile.image} />
             </div>
-
             
-            
-            
-
+            Bio: 
+            <div className="field-container" >
+                {bioDisplay}
+            </div>
+            Status: 
+            <div className="field-container" >
+                {user.profile.status}
+            </div>
             
         </div>
     )

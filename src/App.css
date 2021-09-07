@@ -16,6 +16,12 @@
 /* profile image css */
 .profile-image {
   max-width: 400px;
+  list-style-type: none;
+}
+
+.li-container {
+  max-width: 400px;
+  list-style-type: none;
 }
 
 /* field contiainer for bio, status*/
@@ -23,6 +29,7 @@
 	background:linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
 	background-color:#ffc477;
   border-radius:6px;
+  list-style-type: none;
 }
 
 /* Goodbye component container */

@@ -20,7 +20,8 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        fetch("/profiles/:id", {
+        
+        fetch(`/profiles/:id`, {
             method: "PATCH",
             headers: {
                 "Accepts": "application/json",

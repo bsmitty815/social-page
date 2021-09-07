@@ -55,7 +55,7 @@ function App() {
         </Route>
 
         <Route exact path="/profile/edit_password">
-          {user ? <EditPassword onDelete={setUser} /> : <Redirect to="/" />}
+          {user ? <EditPassword /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/profile/edit_profile">
           {user ? <EditProfile onDelete={setUser} user={user} updateUserProfileState={updateUserProfileState} /> : <Redirect to="/" />}
