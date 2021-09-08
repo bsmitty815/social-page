@@ -5,7 +5,8 @@ import UserList from './UserList'
 
 function User() {
     const [usersInfo, setUsersInfo] = useState([])
-    
+    const [usersProfiles, setUsersProfiles] = useState([])
+    //console.log(usersProfiles, "up")
     useEffect(() => {
         fetch("/users").then((r) => {
             if (r.ok) {
@@ -14,9 +15,22 @@ function User() {
         })
     }, []) 
 
+    useEffect(() => {
+        fetch("/profiles").then((r) => {
+            if (r.ok) {
+                r.json().then((data) => setUsersProfiles(data))
+            }
+        })
+    }, []) 
+    //console.log(usersInfo)
 
-    const usersNameDisplay = usersInfo.map((user) => {
-        return <div key={user.id}><UserList key={user.id} user={user.id} {...user} /></div>
+    //const testDisplay = usersInfo.map((user) => user.profile).map((profData) => profData.avatar).map((avatarData) => avatarData)
+    //console.log(testDisplay, "testDisplay")
+    // const usersNameDisplay = usersInfo.map((user) => {
+    //     return <div key={user.id}><UserList key={user.id} user={user} {...user} /></div>
+    // })
+    const mapProfileDisplay = usersProfiles.map((data) => {
+        return <div><UserList username={data.user.username} bio={data.bio} status={data.status} avatar={data.avatar}/></div>
     })
     
     return (
@@ -28,7 +42,7 @@ function User() {
             </Link>
 
             <div>
-                {usersNameDisplay}
+                {mapProfileDisplay}
             </div>
         </div>
     )

@@ -2,20 +2,29 @@ import UserProfile from "./UserProfile"
 import { useState } from "react"
 
 
-function UserList({username, id, bio, status, image, avatar}) {
+function UserList({username, bio, status, avatar}) {
     const [showUserProfile, setShowUserProfile] = useState(false)
 
-    //click on a user
-    
+    console.log(avatar, "avatar")
+
+    function handleClick() {
+        setShowUserProfile((!showUserProfile))
+    }
 
     return (
         <div>
+            {!showUserProfile ?
+            <div onClick={handleClick}>
+            {username}
 
-            <div>
-                {username}
-                {id}
-                {showUserProfile ? true : <UserProfile id={id} username={username} bio={bio} status={status} image={image} avatar={avatar} />}
             </div>
+            
+                :
+            <div onClick={handleClick} >
+            {username}
+            <UserProfile username={username} bio={bio} status={status} avatar={avatar && avatar.url} />  
+            </div>
+            }
         </div>
     )
 }

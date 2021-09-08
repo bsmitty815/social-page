@@ -10,7 +10,7 @@ import EditProfile from './components/profile/EditProfile'
 import Loading from './components/loading/Loading'
 import GoodBye from './components/auth/GoodBye'
 import User from './components/users/User';
-import UserProfile from './components/users/UserProfile'
+
 
 function App() {
   const [user, setUser] = useState(null)

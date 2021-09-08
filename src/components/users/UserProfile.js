@@ -1,7 +1,7 @@
 
 
-function UserProfile({username, id, bio, status, image, avatar}) {
-    
+function UserProfile({username, bio, status, image, avatar}) {
+    console.log(avatar, "userprofile avatar")
 
 
     
@@ -10,7 +10,7 @@ function UserProfile({username, id, bio, status, image, avatar}) {
             <h1 >Username: {username}</h1>
 
             <div>
-            <img src={avatar.url} className="profile-image" alt={avatar.url} />
+            <img src={avatar} className="profile-image" alt={avatar} />
             </div>
 
             Bio: 
@@ -21,7 +21,7 @@ function UserProfile({username, id, bio, status, image, avatar}) {
             <div className="field-container" >
                 {status}
             </div>
-            <img src={image} />
+            <img src={image} className="profile-image" alt={image} />
         </div>
     )
 }

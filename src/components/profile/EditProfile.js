@@ -24,10 +24,17 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
         e.preventDefault()
         
         const formData = new FormData()
-        formData.append("image",image)
-        formData.append("bio",bio)
-        formData.append("status",status)
-        formData.append("avatar",avatar)
+        //if the avatar is empty its says the else so that it doesnt change in the back end
+        if (avatar[0]) {
+            formData.append("image",image)
+            formData.append("bio",bio)
+            formData.append("status",status)
+            formData.append("avatar",avatar)
+        } else {
+            formData.append("image",image)
+            formData.append("bio",bio)
+            formData.append("status",status)
+        }
         
         console.log(avatar)
         fetch(`/profiles/:id`, {
