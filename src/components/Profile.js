@@ -19,10 +19,7 @@ function Profile({user, onLogout, setLoading}) {
         })
     }
 
-    //   \n
     
-   
-
    
     if (!user) return <Redirect to="/login" />
 
@@ -61,7 +58,7 @@ function Profile({user, onLogout, setLoading}) {
             <h1 >Username: {user.username}</h1>
 
             <div>
-            <img src={user.profile.avatar.url} className="profile-image" alt={user.profile.avatar.url} />
+            <img src={user.profile.avatar && user.profile.avatar.url} className="profile-image" alt={user.profile.avatar && user.profile.avatar.url} />
             </div>
             
             Bio: 
@@ -72,7 +69,7 @@ function Profile({user, onLogout, setLoading}) {
             <div className="field-container" >
                 {user.profile.status}
             </div>
-            <img src={user.image} className="profile-image" alt={user.profile.image} />
+            <img src={user.profile.image} className="profile-image" alt={user.profile.image} />
         </div>
     )
 }

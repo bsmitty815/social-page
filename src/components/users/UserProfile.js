@@ -1,9 +1,6 @@
 
 
 function UserProfile({username, bio, status, image, avatar}) {
-    console.log(avatar, "userprofile avatar")
-
-
     
     return (
         <div>
