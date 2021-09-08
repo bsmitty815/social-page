@@ -9,6 +9,8 @@ import EditPassword from './components/profile/EditPassword'
 import EditProfile from './components/profile/EditProfile'
 import Loading from './components/loading/Loading'
 import GoodBye from './components/auth/GoodBye'
+import User from './components/users/User';
+import UserProfile from './components/users/UserProfile'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -62,6 +64,9 @@ function App() {
         </Route>
         <Route exact path="/goodbye">
           <GoodBye />
+        </Route>
+        <Route exact path="/users">
+          {user ? <User /> : <Redirect to="/" />}
         </Route>
         <Route path="/">
           {!loading ? <Profile user={user} onLogout={setUser} setLoading={setLoading}  /> : <Loading />}

@@ -7,7 +7,9 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
     const [bio, setBio] = useState(user.profile.bio)
     const [status, setStatus] = useState(user.profile.status)
     const [profileUpdatedTextConfirmation, setProfileUpdatedTextConfirmation] = useState("")
+    const [avatar, setAvatar] = useState("")
     let history = useHistory()
+    console.log(image, bio, status, avatar)
     
     function handleDelete() {
         fetch("/users/:id", {
@@ -21,19 +23,16 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
     function handleSubmit(e) {
         e.preventDefault()
         
+        const formData = new FormData()
+        formData.append("image",image)
+        formData.append("bio",bio)
+        formData.append("status",status)
+        formData.append("avatar",avatar)
+        
+        console.log(avatar)
         fetch(`/profiles/:id`, {
             method: "PATCH",
-            headers: {
-                "Accepts": "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                profile: {
-                    image,
-                    bio,
-                    status,
-                }
-            })
+            body: formData,
         })
         .then((r) => {
             if (r.ok) {
@@ -76,6 +75,10 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
                     <textarea type="textarea" className="form-control" name="status" access="false" maxLength="100" rows="5" id="edit-status" placeholder={status} value={status} onChange={(e) => setStatus(e.target.value)}></textarea>
                     <br></br>
                     Maximum characters 100
+                </div>
+                <div>
+                <label htmlFor="edit-avatar" className="form-control">File Upload</label>
+                <input type="file" className="form-control" name="avatar" access="false" id="avatar-upload" onChange={(e) => setAvatar(e.target.files[0])} />
                 </div>
                 <p>{profileUpdatedTextConfirmation}</p>
                 <button className="myButton" >Submit</button>

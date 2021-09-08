@@ -3,7 +3,7 @@
 import { Link, useHistory, Redirect } from "react-router-dom"
 
 function Profile({user, onLogout, setLoading}) {
-    
+    console.log(user)
     let history = useHistory();
 
 
@@ -51,13 +51,17 @@ function Profile({user, onLogout, setLoading}) {
                 Edit Profile
                 </button>
             </Link>
+            <Link to="/users">
+                <button  className="myButton" >
+                Users
+                </button>
+            </Link>
             </div>
 
             <h1 >Username: {user.username}</h1>
 
-            Image:
             <div>
-            <img src={user.profile.image} className="profile-image" alt={user.profile.image} />
+            <img src={user.profile.avatar.url} className="profile-image" alt={user.profile.image} />
             </div>
             
             Bio: 
@@ -68,7 +72,7 @@ function Profile({user, onLogout, setLoading}) {
             <div className="field-container" >
                 {user.profile.status}
             </div>
-            
+            <img src={user.image} />
         </div>
     )
 }

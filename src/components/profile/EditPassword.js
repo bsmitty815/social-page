@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useHistory, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 function EditPassword() {
     const [oldPassword, setOldPassword] = useState("")
@@ -7,7 +7,7 @@ function EditPassword() {
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errors, setErrors] = useState([])
     const [message, setMessage] = useState([])
-    let history = useHistory()
+
 
 
     //would you send through old password to confirm
