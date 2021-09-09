@@ -13,6 +13,14 @@
   color: rgb(255, 196, 0);
 }
 
+/* profile avatar image */
+.profile-avatar {
+align-items: left;
+max-width: 150px;
+max-height: 150px;
+list-style-type: none;
+}
+
 /* profile image css */
 .profile-image {
   max-width: 400px;

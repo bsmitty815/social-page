@@ -1,9 +1,15 @@
 
 
-function UserProfile({username, bio, status, image, avatar}) {
+function UserProfile({username, bio, status, image, avatar, hideUserProfile}) {
     
+    function handleClick(){
+        console.log("clicked")
+        hideUserProfile()
+    }
+
     return (
         <div>
+            <p onClick={handleClick}>Close X</p>
             <h1 >Username: {username}</h1>
 
             <div>

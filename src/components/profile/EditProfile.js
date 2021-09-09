@@ -9,7 +9,7 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
     const [profileUpdatedTextConfirmation, setProfileUpdatedTextConfirmation] = useState("")
     const [avatar, setAvatar] = useState("")
     let history = useHistory()
-    console.log(image, bio, status, avatar)
+    
     
     function handleDelete() {
         fetch("/users/:id", {
@@ -25,7 +25,7 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
         
         const formData = new FormData()
         //if the avatar is empty its says the else so that it doesnt change in the back end
-        if (avatar[0]) {
+        if (avatar) {
             formData.append("image",image)
             formData.append("bio",bio)
             formData.append("status",status)
@@ -65,7 +65,7 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
                     <h1 access="false">Edit Profile</h1>
                 </div>
                 <div>
-                    <label htmlFor="edit-image-url">Image Url:</label>
+                    <label htmlFor="edit-image-url">Image Path:</label>
                     <br></br>
                     <input type="text" className="form-control" name="image" access="false" id="edit-image-url" placeholder={image} value={image} onChange={(e) => setImage(e.target.value)}/>
                 </div>

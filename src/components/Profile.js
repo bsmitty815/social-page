@@ -24,8 +24,7 @@ function Profile({user, onLogout, setLoading}) {
     if (!user) return <Redirect to="/login" />
 
 
-    //console.log(Object.values(user.profile.bio))
-    //logic for bio to be seperate by line
+    //function to display the bio if there are also spaces in between the sentences
     let userBio = Object.values(user.profile.bio)
     let newBio = userBio.join("").split("\n")
     const bioDisplay = newBio.map((bioStrings, index) => { 
@@ -58,7 +57,7 @@ function Profile({user, onLogout, setLoading}) {
             <h1 >Username: {user.username}</h1>
 
             <div>
-            <img src={user.profile.avatar && user.profile.avatar.url} className="profile-image" alt={user.profile.avatar && user.profile.avatar.url} />
+            <img src={user.profile.avatar && user.profile.avatar.url} className="profile-avatar" alt={user.profile.avatar && user.profile.avatar.url} />
             </div>
             
             Bio: 

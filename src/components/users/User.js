@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 import UserList from './UserList'
 
 
-function User() {
+function User({hideUserProfile}) {
 
     const [usersProfiles, setUsersProfiles] = useState([])
-    //console.log(usersProfiles, "up")
+
 
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function User() {
     }, []) 
 
     const mapProfileDisplay = usersProfiles.map((data) => {
-        return <div key={data.user.username} ><UserList username={data.user.username} bio={data.bio} status={data.status} avatar={data.avatar} image={data.image} /></div>
+        return <div key={data.user.username} ><UserList username={data.user.username} bio={data.bio} status={data.status} avatar={data.avatar} image={data.image} hideUserProfile={hideUserProfile} /></div>
     })
     
     return (

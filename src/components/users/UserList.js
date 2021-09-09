@@ -22,7 +22,7 @@ function UserList({username, bio, status, avatar, image}) {
                 :
             <div onClick={handleClick} >
             {username}
-            <UserProfile username={username} bio={bio} status={status} image={image} avatar={avatar && avatar.url} />  
+            <UserProfile username={username} bio={bio} status={status} image={image} avatar={avatar && avatar.url} hideUserProfile={handleClick}/>  
             </div>
             }
         </div>
