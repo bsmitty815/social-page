@@ -1,15 +1,20 @@
+import Header from "../Header"
 
 
 function UserProfile({username, bio, status, image, avatar, hideUserProfile}) {
     
     function handleClick(){
-        console.log("clicked")
         hideUserProfile()
     }
 
     return (
-        <div>
-            <p onClick={handleClick}>Close X</p>
+        <div className="modal-display">
+        
+        <div className="modal-display-inner">
+            <Header />
+            <button onClick={handleClick} className="myButton" >
+            Back
+            </button>
             <h1 >Username: {username}</h1>
 
             <div>
@@ -26,6 +31,8 @@ function UserProfile({username, bio, status, image, avatar, hideUserProfile}) {
             </div>
             <img src={image} className="profile-image" alt={image} />
         </div>
+        </div>
+
     )
 }
 

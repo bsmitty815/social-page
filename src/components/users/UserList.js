@@ -12,7 +12,7 @@ function UserList({username, bio, status, avatar, image}) {
     }
 
     return (
-        <div>
+        <div >
             {!showUserProfile ?
             <div onClick={handleClick}>
             {username}

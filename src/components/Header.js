@@ -4,7 +4,7 @@ function Header() {
     return (
         <div className="App-Header">
             <h1>
-                meSocial
+                meProfile
             </h1>
         </div>
     )
