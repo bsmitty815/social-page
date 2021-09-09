@@ -48,13 +48,13 @@ function EditPassword() {
 
     return (
         <div>
-            
-            <h1>Edit Password</h1>
             <Link to="/profile">
                 <button className="myButton" >
                 back
                 </button>
             </Link>
+            <h1>Edit Password</h1>
+
             <form onSubmit={handleSubmit}>
                 <label htmlFor="old-password">Old Password: </label>
                 <input type="password" name="old-password" id="old-password" autoComplete="on" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)}/>

@@ -18,7 +18,7 @@ function UserProfile({username, bio, status, image, avatar, hideUserProfile}) {
             <h1 >Username: {username}</h1>
 
             <div>
-            <img src={avatar} className="profile-image" alt={avatar} />
+            <img src={avatar} className="profile-avatar" alt={avatar} />
             </div>
 
             Bio: 
