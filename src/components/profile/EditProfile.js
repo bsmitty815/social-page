@@ -61,13 +61,13 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
             </Link>
             <p>Username: {user.username}</p>
             <form onSubmit={handleSubmit}>
-                <div className="">
+                <div>
                     <h1 access="false">Edit Profile</h1>
                 </div>
-                <div>
+                <div >
                     <label htmlFor="edit-image-url">Image Path:</label>
                     <br></br>
-                    <input type="text" className="form-control" name="image" access="false" id="edit-image-url" placeholder={image} value={image} onChange={(e) => setImage(e.target.value)}/>
+                    <input  type="text" className="form-control" name="image" access="false" id="edit-image-url" placeholder={image} value={image} onChange={(e) => setImage(e.target.value)}/>
                 </div>
                 <div>
                     <label htmlFor="edit-bio">Bio:</label>
@@ -79,7 +79,7 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
                 <div>
                     <label htmlFor="edit-status">Status:</label>
                     <br></br>
-                    <textarea type="textarea" className="form-control" name="status" access="false" maxLength="100" rows="5" id="edit-status" placeholder={status} value={status} onChange={(e) => setStatus(e.target.value)}></textarea>
+                    <textarea type="textarea" className="form-control" name="status" access="false" maxLength="100" rows="5" id="edit-status"  placeholder={status} value={status} onChange={(e) => setStatus(e.target.value)}></textarea>
                     <br></br>
                     Maximum characters 100
                 </div>

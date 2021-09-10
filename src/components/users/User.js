@@ -6,8 +6,8 @@ import UserList from './UserList'
 function User({hideUserProfile}) {
 
     const [usersProfiles, setUsersProfiles] = useState([])
-
-
+    const [searchTerm, setSearchTerm] = useState([])
+    console.log(searchTerm)
 
     useEffect(() => {
         fetch("/profiles").then((r) => {
@@ -17,7 +17,7 @@ function User({hideUserProfile}) {
         })
     }, []) 
 
-    const mapProfileDisplay = usersProfiles.map((data) => {
+    const mapProfileDisplay = usersProfiles.filter((data) => data.user.username.toLowerCase().includes(searchTerm.toLowerCase())).map((data) => {
         return <div key={data.user.username} ><UserList username={data.user.username} bio={data.bio} status={data.status} avatar={data.avatar} image={data.image} hideUserProfile={hideUserProfile} /></div>
     })
     
@@ -28,6 +28,9 @@ function User({hideUserProfile}) {
                 Back
                 </button>
             </Link>
+            <div className="search-bar">
+            <input type="text" name="username" id="search-username" placeholder="search user" value={searchTerm}  onChange={(e) => setSearchTerm(e.target.value)} />
+            </div>
 
             <div>
                 {mapProfileDisplay}
