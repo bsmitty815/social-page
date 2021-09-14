@@ -7,6 +7,7 @@ function UserList({username, bio, status, avatar, image}) {
 
 
 
+    //shows the users profile that is clicked
     function handleClick() {
         setShowUserProfile((!showUserProfile))
     }

@@ -10,7 +10,7 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
     const [avatar, setAvatar] = useState("")
     let history = useHistory()
     
-    
+    //gets the current user
     function handleDelete() {
         fetch("/users/:id", {
             method: "DELETE",
@@ -20,6 +20,7 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
         history.push("/goodbye")
     }
 
+    //function to update the current users profile
     function handleSubmit(e) {
         e.preventDefault()
         
@@ -35,8 +36,7 @@ function EditProfile({user, onDelete, updateUserProfileState}) {
             formData.append("bio",bio)
             formData.append("status",status)
         }
-        
-        console.log(avatar)
+        //sends the data back to the backend
         fetch(`/profiles/:id`, {
             method: "PATCH",
             body: formData,

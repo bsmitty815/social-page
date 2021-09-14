@@ -3,6 +3,7 @@ import Header from "../Header"
 
 function UserProfile({username, bio, status, image, avatar, hideUserProfile}) {
     
+    //calls the function to rehide the users profile that was currently clicked
     function handleClick(){
         hideUserProfile()
     }

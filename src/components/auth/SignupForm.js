@@ -7,6 +7,7 @@ function SignupForm({onLogin}) {
     const [errors, setErrors] = useState([])
 
 
+    //function for new user to sing up
     function handleSubmit(event) {
         event.preventDefault()
         fetch("/signup", {
@@ -33,7 +34,7 @@ function SignupForm({onLogin}) {
         })
     }
 
-    //displaying the errors on the page
+    //methods to help display the errors on the page
     const errorsString = errors.join("").split(":").slice(-1)
     const errorsContainer = errorsString[0].replace(">", "")
     

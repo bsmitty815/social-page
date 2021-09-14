@@ -31,13 +31,14 @@ function App() {
     })
   }, [])
 
-  //loading 
+  //loading icon use effect
   useEffect(() => {
     if (user) {
       setLoading(false) 
     }
   }, [user])
 
+  //updating state for profile data once profile is edited
   function updateUserProfileState(updatedProfileData) {
     setUser(updatedProfileData)
   }

@@ -6,7 +6,7 @@ import ReactLoading from 'react-loading';
 
 function Loading() {
 
-
+    // loading icon
     return (
         <div>
             <ReactLoading type={'spin'} color={'green'} height={'20%'} width={'20%'} />

@@ -10,10 +10,11 @@ function EditPassword() {
 
 
 
-    //would you send through old password to confirm
+    //function to update the password
     function handleSubmit(event) {
 
         event.preventDefault()
+        //if there are any messages or errors to clear them out
         setErrors([])
         setMessage([])
         fetch("/users/:id", {

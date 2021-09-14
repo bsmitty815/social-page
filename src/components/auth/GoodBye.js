@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 function GoodBye() {
 
-
+    //page displayed when a user logs out
     return (
         <div className="Goodbye-Container">
             <strong>Have a good day!</strong>

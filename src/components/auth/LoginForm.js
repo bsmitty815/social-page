@@ -6,6 +6,7 @@ function LoginForm({onLogin}) {
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
 
+    //function for the user to login into their account
     function handleSubmit(event) {
         event.preventDefault()
         fetch("/login", {

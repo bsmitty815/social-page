@@ -7,6 +7,7 @@ function Profile({user, onLogout, setLoading}) {
     let history = useHistory();
 
 
+    // log current user out
     function handleLogout() {
         fetch("/logout", {
             method: "DELETE"
@@ -21,6 +22,7 @@ function Profile({user, onLogout, setLoading}) {
 
     
    
+    // if the user its not signed in redirect them to the login page
     if (!user) return <Redirect to="/login" />
 
 
