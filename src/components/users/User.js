@@ -6,7 +6,7 @@ import UserList from './UserList'
 function User({hideUserProfile}) {
 
     const [usersProfiles, setUsersProfiles] = useState([])
-    const [searchTerm, setSearchTerm] = useState([])
+    const [searchTerm, setSearchTerm] = useState("")
     
     //gets all the users profiles
     useEffect(() => {
