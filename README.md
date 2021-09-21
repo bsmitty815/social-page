@@ -1,4 +1,4 @@
-# Trading Card Collection
+# Social Page
 
 ![image](src/images/readme-image.png)
 

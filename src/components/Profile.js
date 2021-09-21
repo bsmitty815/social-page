@@ -2,9 +2,11 @@
 
 import { Link, useHistory, Redirect } from "react-router-dom"
 
+
 function Profile({user, onLogout, setLoading}) {
    
     let history = useHistory();
+    
 
 
     // log current user out
@@ -32,6 +34,33 @@ function Profile({user, onLogout, setLoading}) {
     const bioDisplay = newBio.map((bioStrings, index) => { 
         return <p key={index}>{bioStrings}</p>
     })
+
+
+    //callback function for button clicked
+    //create function
+    //button says garfield
+    //once clicked puts i hate mondays but love lasagna on the page
+    function garfieldButton() {
+        console.log("clicked garfield button")
+        
+        //onLongout
+        fetch('/profiles/:id', {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                status: "I hate mondays but love lasagna"
+            })
+        })
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((data) => onLogout(data))
+            }
+        })
+    }
+
+
 
 
     return (
@@ -71,6 +100,8 @@ function Profile({user, onLogout, setLoading}) {
                 {user.profile.status}
             </div>
             <img src={user.profile.image} className="profile-image" alt={user.profile.image} />
+            <button onClick={garfieldButton}>Garfield</button>
+
         </div>
     )
 }

@@ -8,6 +8,8 @@ function UserProfile({username, bio, status, image, avatar, hideUserProfile}) {
         hideUserProfile()
     }
 
+
+
     return (
         <div className="modal-display">
         
@@ -31,6 +33,7 @@ function UserProfile({username, bio, status, image, avatar, hideUserProfile}) {
                 {status}
             </div>
             <img src={image} className="profile-image" alt={image} />
+            
         </div>
         </div>
 
